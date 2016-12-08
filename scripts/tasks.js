@@ -5,13 +5,52 @@ var usersData = [
 	{ 'user' : 'Alex', 'password' : 'MyNameIsAlex' },
 	{ 'user' : 'Bob', 'password' : 'MyNAmeIsBob' }
 ];
-console.log(getFieldValues(usersData, 'user')); // --> ['Alex', 'Bob']
+console.log(getFieldValues(usersData, 'user')); // --> ['Alex', 'Bob'] 
+
+var scope = "global"; 
+function scopeTest() { 
+console.log(scope); // "undefined" 
+var scope = "local"; 
+console.log(scope); // "local" 
+} 
+console.log(getFieldValues(usersData, 'user')); // —> ['Alex', 'Bob'] 
+function getFieldValues(usersData, value){ 
+var output = []; 
+for(let i = 0; i < usersData.length; i++){ 
+output[i] = usersData[i][value]; 
+} 
+for (let i = 0; i < (output.length - 1); i++){ 
+for (let j = 0; j < (output.length - 1 ); j++){ 
+if(output[j] > output[j + 1]){ 
+let c = output[j]; 
+output[j] = output[j + 1]; 
+output[j + 1] = c; 
+} 
+} 
+} 
+return output; 
+} 
+
+
 
 // 2) Написать функцию, фильтрующую массив с использованием предиката:
 
 var numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
-function isEven(x) {/* Проверка на чётность */}
-console.log(filter(numbers, isEven)); // --> [2, 8, 34]
+/* function isEven(x) {/* Проверка на чётность */}
+console.log(filter(numbers, isEven)); // --> [2, 8, 34] */
+
+console.log(isEven(numbers)); 
+function isEven(x) { 
+var a = [], k = 0; 
+
+for(let i = 0; i < x.length; i++){ 
+if (x[i]%2 == 0){ 
+a[k] = x[i]; 
+k++; 
+} 
+} 
+return a; 
+}
 
 // 3) Даны 2 строки со словами (без знаков препинания), 
 // вывести те слова (по одному разу), которые встречаются в обоих строках
